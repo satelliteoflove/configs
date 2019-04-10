@@ -4,19 +4,32 @@ filetype plugin indent on
 "Start plugin system.
 call plug#begin()
 
-" Autocompletion - Switching from deoplete to CoC
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+" Autocompletion
+Plug 'ncm2/ncm2'
+" nvim-yarp required for ncm2
+Plug 'roxma/nvim-yarp'
+" NOTE: you need to install completion sources to get completions. Check our
+" wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
 
-" Autocompletion of Python
-"Plug 'zchee/deoplete-jedi'
-
-" Use jedi-vim instead of deoplete
-"Plug 'davidhalter/jedi-vim'
+" NCM2 Completion Sources
+" completion from current buffer
+Plug 'ncm2/ncm2-bufword' 
+" completion from file paths
+Plug 'ncm2/ncm2-path' 
+" completion from tmux panes
+Plug 'wellle/tmux-complete.vim'
+" completion of CSS
+Plug 'ncm2/ncm2-cssomni'
+" completion of Python
+Plug 'ncm2/ncm2-jedi'
+" completion of vim-script
+Plug 'ncm2/ncm2-vim'
+" Snippet integration
+Plug 'ncm2/ncm2-ultisnips'
 
 " Code snippets
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Tab completion - probably not needed any more with deoplete
 Plug 'ervandew/supertab'
@@ -43,8 +56,14 @@ Plug 'vim-airline/vim-airline-themes'
 " Display git differences
 Plug 'airblade/vim-gitgutter'
 
+" Code refactoring
+Plug 'apalmer1377/factorus'
+
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
+
+" Ansible syntax support
+Plug 'pearofducks/ansible-vim'
 
 " Code folding
 Plug 'tmhedberg/SimpylFold'
@@ -100,9 +119,6 @@ set showmatch
 set tw=79
 set cc=+1
 
-" don't give |ins-completion-menu| messages
-set shortmess+=c
-
 " always show signcolumns
 set signcolumn=yes
 
@@ -113,85 +129,29 @@ set undofile
 " Key remappings
 nnoremap <esc> :noh<return><esc>
 
-"" Use tab for trigger completion with characters ahead and navigate.
-"" Use command ':verbose imap <tab>' to make sure tab is not mapped by other
-"" plugin.
-"inoremap <silent><expr> <TAB>
-"    \ pumvisible() ? "\<C-n>" :
-"    \ <SID>check_back_space() ? "\<TAB>" :
-"    \ coc#refresh()
-"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-"
-"function! s:check_back_space() abort
-"    let col = col('.') - 1
-"    return !col || getline('.')[col - 1] =~# '\s'
-"endfunction
-"
-"" Use <c-space> for trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
-"
-"" Use <cr> for confirming completion, `<C-g>u` means break undo chain at
-"" current position. Coc only does snippet and additional edit on confirm.
-"inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-    if &filetype == 'vim'
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
 " don't give |ins-completion-menu| messages
-set shortmess+=c
+"set shortmess+=c
 
-" always show signcolumns
-set signcolumn=yes
 
 " Plugin Configurations
+
+" NCM2 Configuration
+let g:python3_host_prog='/usr/bin/python3'
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+" Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
+" messages.
+set shortmess+=c
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+inoremap <c-c> <ESC>
 
 " Let plugins show effects after 250ms, not 4s
 set updatetime=250
 
 " Set color scheme
 colorscheme zenburn
-
-" Deoplete enable
-let g:deoplete#enable_at_startup = 1
-" Disable Jedi auto-complete
-let g:jedi#completions_enabled = 0
-
-" Enable Deoplete logging
-"let g:deoplete#enable_profile = 1
-"call deoplete#enable_logging('DEBUG', 'deoplete.log')
-"call deoplete#custom#set('jedi', 'debug_enabled', 1)
-
-if !exists('g:deoplete#omni#input_patterns')
-    let g:deoplete#omni#input_patterns = {}
-endif
-
-" Close preview window after complete
-"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Deoplete tab-completion
-inoremap <expr><tab> pumvisible() ? "\<c-n" : "\<tab>"
-
-" Deoplete-jedi enable docstring preview
-let g:deoplete#sources#jedi#show_docstring = 1
-
-" Force it to use Python 3 instead of 2
-" This was commented out so that whatever python exists in a virtualenv would
-" be the one used by deoplete.
-" let g:deoplete#sources#jedi#python_path = "/usr/bin/python3"
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
