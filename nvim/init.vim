@@ -31,7 +31,7 @@ Plug 'ncm2/ncm2-ultisnips'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Tab completion - probably not needed any more with deoplete
+" Tab completion
 Plug 'ervandew/supertab'
 
 " Color themes
@@ -129,9 +129,6 @@ set undofile
 " Key remappings
 nnoremap <esc> :noh<return><esc>
 
-" don't give |ins-completion-menu| messages
-"set shortmess+=c
-
 
 " Plugin Configurations
 
@@ -140,12 +137,16 @@ let g:python3_host_prog='/usr/bin/python3'
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 " IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+set completeopt=noinsert,menuone,preview
 " Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
 " messages.
 set shortmess+=c
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <c-c> <ESC>
+
+"Vim-Ansible config
+" Indentation reset after two newlines in insert-mode.
+let g:ansible_unindent_after_newline = 1
 
 " Let plugins show effects after 250ms, not 4s
 set updatetime=250
