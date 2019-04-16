@@ -4,28 +4,8 @@ filetype plugin indent on
 "Start plugin system.
 call plug#begin()
 
-" Autocompletion
-Plug 'ncm2/ncm2'
-" nvim-yarp required for ncm2
-Plug 'roxma/nvim-yarp'
-" NOTE: you need to install completion sources to get completions. Check our
-" wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-
-" NCM2 Completion Sources
-" completion from current buffer
-Plug 'ncm2/ncm2-bufword' 
-" completion from file paths
-Plug 'ncm2/ncm2-path' 
-" completion from tmux panes
-Plug 'wellle/tmux-complete.vim'
-" completion of CSS
-Plug 'ncm2/ncm2-cssomni'
-" completion of Python
-Plug 'ncm2/ncm2-jedi'
-" completion of vim-script
-Plug 'ncm2/ncm2-vim'
-" Snippet integration
-Plug 'ncm2/ncm2-ultisnips'
+" Autocompletion with Deoplete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Code snippets
 Plug 'SirVer/ultisnips'
@@ -135,11 +115,9 @@ nnoremap <esc> :noh<return><esc>
 
 " Plugin Configurations
 
-" NCM2 Configuration
-let g:python3_host_prog='/usr/bin/python3'
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" IMPORTANT: :help Ncm2PopupOpen for more information
+" Deoplete Configs
+let g:deoplete#enable_at_startup = 1
+
 set completeopt=noinsert,menuone,preview
 " Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
 " messages.
