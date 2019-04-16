@@ -65,6 +65,9 @@ Plug 'vim-syntastic/syntastic'
 " Ansible syntax support
 Plug 'pearofducks/ansible-vim'
 
+" Markdown support
+Plug 'gabrielelana/vim-markdown'
+
 " Code folding
 Plug 'tmhedberg/SimpylFold'
 
