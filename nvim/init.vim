@@ -5,14 +5,20 @@ filetype plugin indent on
 call plug#begin()
 
 " Autocompletion with Deoplete
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'deoplete-plugins/deoplete-jedi'
+"Plug 'davidhalter/jedi'
+"
+" Autocompletion with CoC
+" Use release branch
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Tab completion
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 " Color themes
 Plug 'flazz/vim-colorschemes'
@@ -116,9 +122,10 @@ nnoremap <esc> :noh<return><esc>
 " Plugin Configurations
 
 " Deoplete Configs
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
-set completeopt=noinsert,menuone,preview
+" Don't set completeopt - Coc does this for you
+"set completeopt=noinsert,menuone,preview
 " Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
 " messages.
 set shortmess+=c
