@@ -20,6 +20,9 @@ Plug 'honza/vim-snippets'
 " Tab completion
 "Plug 'ervandew/supertab'
 
+" Surround
+Plug 'tpope/vim-surround'
+
 " Color themes
 Plug 'flazz/vim-colorschemes'
 
