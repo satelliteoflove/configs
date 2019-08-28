@@ -4,11 +4,6 @@ filetype plugin indent on
 "Start plugin system.
 call plug#begin()
 
-" Autocompletion with Deoplete
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'deoplete-plugins/deoplete-jedi'
-"Plug 'davidhalter/jedi'
-"
 " Autocompletion with CoC
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -23,6 +18,9 @@ Plug 'honza/vim-snippets'
 " Surround
 Plug 'tpope/vim-surround'
 
+" Git integration
+Plug 'tpope/vim-fugitive'
+
 " Color themes
 Plug 'flazz/vim-colorschemes'
 
@@ -36,7 +34,7 @@ Plug 'xolox/vim-easytags'
 Plug 'xolox/vim-misc'
 
 " Cross-file search and replace
-Plug 'brooth/far.vim'
+"Plug 'brooth/far.vim'
 
 " Status bar mods
 Plug 'vim-airline/vim-airline'
