@@ -125,6 +125,9 @@ nnoremap <esc> :noh<return><esc>
 " Deoplete Configs
 "let g:deoplete#enable_at_startup = 1
 
+" Coc Settings
+set statusline+=%{coc#status()}
+
 " Don't set completeopt - Coc does this for you
 "set completeopt=noinsert,menuone,preview
 " Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
