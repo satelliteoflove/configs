@@ -8,6 +8,9 @@ call plug#begin()
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Exuberant ctags in a sidebar.
+Plug 'majutsushi/tagbar'
+
 " Code snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -135,6 +138,9 @@ set statusline+=%{coc#status()}
 set shortmess+=c
 " CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
 inoremap <c-c> <ESC>
+
+" tagbar config
+nmap <F8> :TagbarToggle<CR>
 
 "Vim-Ansible config
 " Indentation reset after two newlines in insert-mode.
