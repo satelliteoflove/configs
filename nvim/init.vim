@@ -12,7 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'majutsushi/tagbar'
 
 " Code snippets
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Tab completion
@@ -38,6 +38,9 @@ Plug 'xolox/vim-misc'
 
 " Cross-file search and replace
 "Plug 'brooth/far.vim'
+
+" supports .todo files
+Plug 'aserebryakov/vim-todo-lists'
 
 " Status bar mods
 Plug 'vim-airline/vim-airline'
@@ -99,10 +102,10 @@ set viewoptions-=options
 set title
 
 " Indentation, tab stops
-set ts=4
+set ts=2
 set autoindent
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 
 set cursorline
 set ruler
@@ -125,11 +128,20 @@ nnoremap <esc> :noh<return><esc>
 
 " Plugin Configurations
 
-" Deoplete Configs
-"let g:deoplete#enable_at_startup = 1
-
 " Coc Settings
 set statusline+=%{coc#status()}
+
+" Use <Tab> for trigger completion
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 
 " Don't set completeopt - Coc does this for you
 "set completeopt=noinsert,menuone,preview
