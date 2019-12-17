@@ -1,0 +1,27 @@
+[profile fun-base]
+region = us-east-1
+output = json
+
+[profile fun-prd]
+source_profile = fun-base
+mfa_serial = arn:aws:iam::109814298726:mfa/chris.childress
+role_arn = arn:aws:iam::109814298726:role/fun-restricted-admin-role-prod
+
+[profile fun-dev]
+source_profile = fun-base
+mfa_serial = arn:aws:iam::109814298726:mfa/chris.childress
+role_arn = arn:aws:iam::547622956693:role/fun-restricted-admin-role-dev
+
+[profile fun-qa]
+source_profile = fun-base
+mfa_serial = arn:aws:iam::109814298726:mfa/chris.childress
+role_arn = arn:aws:iam::469111357076:role/fun-restricted-admin-role-qa
+
+[profile pm-base]
+region = us-east-1
+output = json
+
+[profile pm-prd]
+source_profile = pm-base
+mfa_serial = arn:aws:iam::266960988212:mfa/chris.childress
+role_arn = arn:aws:iam::266960988212:role/pm-restricted-admin-role
