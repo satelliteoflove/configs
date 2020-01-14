@@ -74,6 +74,9 @@ set encoding=utf-8
 " if hidden is not set, TextEdit might fail
 set hidden
 
+" Use system clipboard for copy/paste
+set clipboard+=unnamedplus
+
 " better display for messages
 set cmdheight=2
 
