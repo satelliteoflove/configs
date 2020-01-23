@@ -165,7 +165,7 @@ let g:ansible_unindent_after_newline = 1
 set updatetime=250
 
 " Set color scheme
-colorscheme zenburn
+colorscheme slate2
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
