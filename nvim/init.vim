@@ -94,6 +94,7 @@ set relativenumber
 
 " Code folding
 set foldcolumn=3
+set foldmethod=indent
 
 " Save view when file is saved, load view when file is loaded.
 autocmd BufWinLeave * mkview
