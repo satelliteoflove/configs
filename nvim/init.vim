@@ -11,6 +11,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Exuberant ctags in a sidebar.
 Plug 'majutsushi/tagbar'
 
+" File tree browser
+Plug 'preservim/nerdtree'
+
 " Code snippets
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -195,3 +198,6 @@ let g:syntastic_php_phpcs_args = '--standard=psr2 --error-severity=1 --warning-s
 
 " Syntastic checker selection
 let g:syntastic_python_checkers = ['flake8']
+
+" NERDTree hotkey
+map <C-n> :NERDTreeToggle<CR>
