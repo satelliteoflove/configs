@@ -18,6 +18,9 @@ Plug 'preservim/nerdtree'
 "Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+" Insert or delete brackets, parens, quotes in pair.
+Plug 'jiangmiao/auto-pairs'
+
 " Tab completion
 "Plug 'ervandew/supertab'
 
