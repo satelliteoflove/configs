@@ -58,6 +58,8 @@ Plug 'airblade/vim-gitgutter'
 " Code refactoring
 Plug 'apalmer1377/factorus'
 
+Plug 'hashivim/vim-terraform'
+
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
 
