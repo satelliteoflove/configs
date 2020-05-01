@@ -69,8 +69,8 @@ Plug 'pearofducks/ansible-vim'
 " Markdown support
 Plug 'gabrielelana/vim-markdown'
 
-" Code folding
-Plug 'tmhedberg/SimpylFold'
+" Code folding for Python
+"Plug 'tmhedberg/SimpylFold'
 
 call plug#end()
 
@@ -102,7 +102,7 @@ set relativenumber
 
 " Code folding
 set foldcolumn=3
-set foldmethod=indent
+set foldmethod=syntax
 
 " Save view when file is saved, load view when file is loaded.
 autocmd BufWinLeave * mkview
@@ -174,7 +174,7 @@ let g:ansible_unindent_after_newline = 1
 set updatetime=250
 
 " Set color scheme
-colorscheme slate2
+colorscheme iceberg
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
