@@ -108,4 +108,8 @@ fi
 alias vim="nvim"
 
 autoload -U +X bashcompinit && bashcompinit
+
+if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune ]; then
+  fortune | cowsay
+fi
 complete -o nospace -C /usr/bin/terraform terraform
