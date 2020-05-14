@@ -49,8 +49,8 @@ Plug 'xolox/vim-misc'
 Plug 'aserebryakov/vim-todo-lists'
 
 " Status bar mods
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 
 " Display git differences
 Plug 'airblade/vim-gitgutter'
@@ -71,6 +71,12 @@ Plug 'gabrielelana/vim-markdown'
 
 " Code folding for Python
 "Plug 'tmhedberg/SimpylFold'
+
+" Visualize vim undo tree
+Plug 'simnalamburt/vim-mundo'
+
+"Add Purpura theme
+Plug 'yassinebridi/vim-purpura'
 
 call plug#end()
 
@@ -175,6 +181,8 @@ set updatetime=250
 
 " Set color scheme
 colorscheme iceberg
+"colorscheme purpura
+"set termguicolors
 
 " Define SimpylFold behavior.
 let g:SimpylFold_docstring_preview = 1
