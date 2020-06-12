@@ -49,8 +49,8 @@ Plug 'xolox/vim-misc'
 Plug 'aserebryakov/vim-todo-lists'
 
 " Status bar mods
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Display git differences
 Plug 'airblade/vim-gitgutter'
@@ -104,7 +104,7 @@ syntax on
 
 " Line numbers
 set number
-set relativenumber
+" set relativenumber
 
 " Code folding
 set foldcolumn=3
