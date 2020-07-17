@@ -104,7 +104,7 @@ syntax on
 
 " Line numbers
 set number
-" set relativenumber
+set relativenumber
 
 " Code folding
 set foldcolumn=3
