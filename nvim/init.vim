@@ -24,6 +24,9 @@ Plug 'jiangmiao/auto-pairs'
 " Tab completion
 "Plug 'ervandew/supertab'
 
+" Sort code blocks
+Plug 'chiedo/vim-sort-blocks-by'
+
 " Surround
 Plug 'tpope/vim-surround'
 
@@ -77,6 +80,9 @@ Plug 'simnalamburt/vim-mundo'
 
 "Add Purpura theme
 Plug 'yassinebridi/vim-purpura'
+
+"Add firenvim, a nvim client for Firefox
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()
 
@@ -193,6 +199,9 @@ let g:airline_theme='wombat'
 
 " Let vim-gitgutter work better with large files
 let g:gitgutter_max_signs=10000
+" Configure commands to select next/previous hunk of changed code
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
 
 " Syntastic general settings
 set statusline+=%#warningmsg#
