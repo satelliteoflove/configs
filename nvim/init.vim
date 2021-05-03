@@ -223,3 +223,9 @@ let g:syntastic_python_checkers = ['flake8']
 
 " NERDTree hotkey
 map <C-n> :NERDTreeToggle<CR>
+
+" XML Folding
+augroup XML
+    autocmd!
+    autocmd FileType xml setlocal foldmethod=indent foldlevelstart=0 foldminlines=0
+augroup END
