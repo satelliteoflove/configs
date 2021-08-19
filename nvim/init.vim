@@ -8,9 +8,6 @@ call plug#begin()
 " Use release branch
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Exuberant ctags in a sidebar.
-Plug 'majutsushi/tagbar'
-
 " File tree browser
 Plug 'preservim/nerdtree'
 
@@ -31,13 +28,13 @@ Plug 'chiedo/vim-sort-blocks-by'
 Plug 'tpope/vim-surround'
 
 " Git integration
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 
 " Color themes
 Plug 'flazz/vim-colorschemes'
 
-" Like a TOC for code
-Plug 'vim-scripts/taglist.vim'
+" Exuberant ctags in a sidebar.
+Plug 'majutsushi/tagbar'
 
 " More ctag goodness
 Plug 'xolox/vim-easytags'
@@ -49,7 +46,7 @@ Plug 'xolox/vim-misc'
 "Plug 'brooth/far.vim'
 
 " supports .todo files
-Plug 'aserebryakov/vim-todo-lists'
+"Plug 'aserebryakov/vim-todo-lists'
 
 " Status bar mods
 Plug 'vim-airline/vim-airline'
@@ -61,13 +58,14 @@ Plug 'airblade/vim-gitgutter'
 " Code refactoring
 Plug 'apalmer1377/factorus'
 
-Plug 'hashivim/vim-terraform'
-
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
 
 " Ansible syntax support
-Plug 'pearofducks/ansible-vim'
+"Plug 'pearofducks/ansible-vim'
+
+" Terraform folding support
+Plug 'hashivim/vim-terraform'
 
 " Markdown support
 Plug 'gabrielelana/vim-markdown'
@@ -79,10 +77,10 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'simnalamburt/vim-mundo'
 
 "Add Purpura theme
-Plug 'yassinebridi/vim-purpura'
+"Plug 'yassinebridi/vim-purpura'
 
 "Add firenvim, a nvim client for Firefox
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 call plug#end()
 
@@ -114,7 +112,13 @@ set relativenumber
 
 " Code folding
 set foldcolumn=3
-set foldmethod=syntax
+" fold by syntax, but also allow for manual fold creation
+augroup vimrc
+    au BufReadPre * setlocal foldmethod=indent
+    au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+" Support for folding terraform
+au BufRead,BufNewFile *.tf setlocal filetype=terraform
 
 " Save view when file is saved, load view when file is loaded.
 autocmd BufWinLeave * mkview
@@ -126,9 +130,11 @@ set viewoptions-=options
 set title
 
 " Indentation, tab stops
+"set ts=2
 set ts=2
 set autoindent
 set expandtab
+"set shiftwidth=2
 set shiftwidth=2
 
 set cursorline
@@ -136,7 +142,7 @@ set ruler
 set showmatch
 
 " Text wrap column
-set tw=79
+"set tw=79
 set cc=+1
 
 " always show signcolumns
@@ -152,31 +158,146 @@ nnoremap <esc> :noh<return><esc>
 
 " Plugin Configurations
 
-" Coc Settings
-set statusline+=%{coc#status()}
+" COC SETTINGS
+"
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Use <Tab> for trigger completion
-" use <tab> for trigger completion and navigate to the next complete item
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Fix an issue with signcolumn related to COC
+set signcolumn=number
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
-" Don't set completeopt - Coc does this for you
-"set completeopt=noinsert,menuone,preview
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+
 " Suppress annoying 'match x of y', 'The only match' and 'Pattern not found'
 " messages.
 set shortmess+=c
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <c-c> <ESC>
 
 " tagbar config
 nmap <F8> :TagbarToggle<CR>
+
+" Markdown tag support
+let g:tagbar_type_markdown = {
+  \ 'ctagstype'	: 'markdown',
+  \ 'kinds'		: [
+    \ 'c:chapter:0:1',
+    \ 's:section:0:1',
+    \ 'S:subsection:0:1',
+    \ 't:subsubsection:0:1',
+    \ 'T:l4subsection:0:1',
+    \ 'u:l5subsection:0:1',
+  \ ],
+  \ 'sro'			: '""',
+  \ 'kind2scope'	: {
+    \ 'c' : 'chapter',
+    \ 's' : 'section',
+    \ 'S' : 'subsection',
+    \ 't' : 'subsubsection',
+    \ 'T' : 'l4subsection',
+  \ },
+  \ 'scope2kind'	: {
+    \ 'chapter' : 'c',
+    \ 'section' : 's',
+    \ 'subsection' : 'S',
+    \ 'subsubsection' : 't',
+    \ 'l4subsection' : 'T',
+  \ },
+\ }
+
+
+" Terraform tag support
+let g:tagbar_type_tf = {
+  \ 'ctagstype': 'tf',
+  \ 'kinds': [
+    \ 'r:Resource',
+    \ 'R:Resource',
+    \ 'd:Data',
+    \ 'D:Data',
+    \ 'v:Variable',
+    \ 'V:Variable',
+    \ 'p:Provider',
+    \ 'P:Provider',
+    \ 'm:Module',
+    \ 'M:Module',
+    \ 'o:Output',
+    \ 'O:Output',
+    \ 'f:TFVar',
+    \ 'F:TFVar'
+  \ ]
+\ }
+
+" Typescript tag support
+let g:tagbar_type_typescript = {
+  \ 'ctagstype': 'typescript',
+  \ 'kinds': [
+    \ 'c:classes',
+    \ 'n:modules',
+    \ 'f:functions',
+    \ 'v:variables',
+    \ 'v:varlambdas',
+    \ 'm:members',
+    \ 'i:interfaces',
+    \ 'e:enums',
+  \ ]
+\ }
+
 
 "Vim-Ansible config
 " Indentation reset after two newlines in insert-mode.

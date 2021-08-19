@@ -1,14 +1,10 @@
 {
   "languageserver": {
-    "dockerfile": {
-      "command": "docker-langserver",
-      "filetypes": ["dockerfile"],
-      "args": ["--stdio"]
-    },
     "terraform": {
       "command": "terraform-lsp",
-      "filetypes": ["terraform"],
-      "initializationOptions": {}
+      "filetypes": ["terraform","tf","tfvars"],
+      "initializationOptions": {},
+      "settings": {}
     }
   },
   "python.jediEnabled": true
