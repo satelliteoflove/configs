@@ -146,7 +146,7 @@ set showmatch
 set cc=+1
 
 " always show signcolumns
-set signcolumn=yes
+set signcolumn=yes:5
 
 " Persistent undo
 set undodir=~/.vim/undodir
