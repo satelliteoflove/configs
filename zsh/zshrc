@@ -120,9 +120,28 @@ source $ZSH/oh-my-zsh.sh
 
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
+#AWSume alias to source the AWSume script
+alias awsume="source awsume"
+
+#Auto-Complete function for AWSume
+_awsume() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(awsume-autocomplete)
+    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    return 0
+}
+
+complete -F _awsume awsume
+
 # Hide user@hostname
 prompt_context () { }
 
 if [ -x /opt/homebrew/bin/cowthink -a -x /opt/homebrew/bin/fortune ]; then
   fortune | cowthink
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
