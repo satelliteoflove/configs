@@ -21,9 +21,6 @@ Plug 'jiangmiao/auto-pairs'
 " Tab completion
 "Plug 'ervandew/supertab'
 
-" Sort code blocks
-Plug 'chiedo/vim-sort-blocks-by'
-
 " Surround
 Plug 'tpope/vim-surround'
 
