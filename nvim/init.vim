@@ -50,7 +50,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Display git differences
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Code refactoring
 Plug 'apalmer1377/factorus'
@@ -316,7 +316,7 @@ let g:airline_powerline_fonts=1
 let g:airline_theme='wombat'
 
 " Let vim-gitgutter work better with large files
-"let g:gitgutter_max_signs=-1
+let g:gitgutter_max_signs=-1
 
 " Configure commands to select next/previous hunk of changed code
 "nmap ]h <Plug>(GitGutterNextHunk)
