@@ -21,3 +21,5 @@ sudo apt install ripgrep -y
 
 To get scriptassist functionality in irssi:
 sudo apt install libwww-perl libnet-ssleay-perl
+
+After installing Sidebery, copy the userChrome.js file in the "firefox" folder to Firefox's profile folder (see https://www.howtogeek.com/209320/how-to-set-up-and-use-multiple-profiles-user-accounts-in-firefox/), and toggle “toolkit.legacyUserProfileCustomizations.stylesheets” to true in "about:config" to remove the tabs at the TOP of the browser window.
