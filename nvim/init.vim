@@ -25,7 +25,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 
 " Git integration
-"Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Color themes
 Plug 'flazz/vim-colorschemes'
