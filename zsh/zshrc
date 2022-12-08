@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$HOME/Library/Python/3.9/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$HOME/Library/Python/3.9/bin:/opt/homebrew/opt/make/libexec/gnubin:$PATH
 
 # Set GOPATH
 #export GOPATH=$(go env GOPATH)
