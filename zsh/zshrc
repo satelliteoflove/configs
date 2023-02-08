@@ -87,7 +87,7 @@ plugins=(
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -107,11 +107,14 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="nvim"
+alias vim="lvim"
+alias nvim="lvim"
 alias pre-commit-run="curl -s -o '.pre-commit-config.yaml' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.pre-commit-config.yaml --next -o '.prettierignore' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.prettierignore && pre-commit run -a ; rm '.pre-commit-config.yaml' '.prettierignore'"
 
 #autoload -U +X bashcompinit && bashcompinit
 
+# default editor
+export EDITOR='lvim'
 
 # tabtab source for packages
 # uninstall by removing these lines
