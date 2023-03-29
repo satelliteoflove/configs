@@ -126,7 +126,7 @@ source $ZSH/oh-my-zsh.sh
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 #AWSume alias to source the AWSume script
-alias awsume="source awsume"
+alias awsume=". awsume"
 
 #Auto-Complete function for AWSume
 _awsume() {
