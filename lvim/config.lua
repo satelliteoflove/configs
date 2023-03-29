@@ -195,7 +195,8 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
   {
-    "Exafunction/codeium.vim"
+    "mfussenegger/nvim-dap-python",
+  },
   }
 }
 
