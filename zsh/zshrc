@@ -6,8 +6,9 @@ export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$HOME/Li
 
 # tmux plugin configs
 ZSH_TMUX_AUTOSTART=false
-# must be set so tmux doesn't shit itself
+# must be set as xterm so tmux doesn't shit itself
 set -g default-terminal "xterm-256color"
+#set -g default-terminal "tmux-256color"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -87,7 +88,7 @@ plugins=(
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -107,11 +108,14 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="nvim"
+alias vim="lvim"
+alias nvim="lvim"
 alias pre-commit-run="curl -s -o '.pre-commit-config.yaml' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.pre-commit-config.yaml --next -o '.prettierignore' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.prettierignore && pre-commit run -a ; rm '.pre-commit-config.yaml' '.prettierignore'"
 
 #autoload -U +X bashcompinit && bashcompinit
 
+# default editor
+export EDITOR='lvim'
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -122,7 +126,7 @@ source $ZSH/oh-my-zsh.sh
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 #AWSume alias to source the AWSume script
-alias awsume="source awsume"
+alias awsume=". awsume"
 
 #Auto-Complete function for AWSume
 _awsume() {
