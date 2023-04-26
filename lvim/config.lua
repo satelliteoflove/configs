@@ -115,6 +115,7 @@ lvim.plugins = {
     "Exafunction/codeium.vim",
     config = function()
       vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+      vim.g.codeium_no_map_tab = "true"
     end
   }
 }
