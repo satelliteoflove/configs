@@ -48,9 +48,11 @@ lvim.builtin.treesitter.auto_install = true
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "comment",
+  "hcl",
   "markdown_inline",
   "python",
-  "regex"
+  "regex",
+  "terraform"
 }
 
 -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
