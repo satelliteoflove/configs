@@ -112,6 +112,9 @@ lvim.plugins = {
     cmd = "TroubleToggle",
   },
   {
+    "simnalamburt/vim-mundo",
+  },
+  {
     "mfussenegger/nvim-dap-python",
   },
   {
