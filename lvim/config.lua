@@ -116,10 +116,16 @@ linters.setup {
 }
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
+-- Prevent tab from completing Codeium suggestions
+vim.g.codeium_no_map_tab = true
+
 lvim.plugins = {
   {
     "folke/trouble.nvim",
     cmd = "TroubleToggle",
+  },
+  {
+    "simnalamburt/vim-mundo",
   },
   {
     "mfussenegger/nvim-dap-python",
@@ -128,7 +134,6 @@ lvim.plugins = {
     "Exafunction/codeium.vim",
     config = function()
       vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.g.codeium_no_map_tab = "true"
     end
   }
 }
