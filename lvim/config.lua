@@ -6,7 +6,19 @@
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.relativenumber = true
-vim.opt.colorcolumn = "79"
+vim.opt.colorcolumn = "80"
+
+vim.opt.foldmethod = "expr"                     -- default is "manual"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
+vim.opt.foldenable = false                      -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
+vim.cmd [[
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
+]]
+
 
 -- general
 lvim.log.level = "info"
@@ -29,6 +41,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.setup.plugins.presets.z = true
 
 -- -- Change theme settings
 -- lvim.colorscheme = "lunar"
