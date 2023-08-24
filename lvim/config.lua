@@ -11,13 +11,21 @@ vim.opt.colorcolumn = "80"
 vim.opt.foldmethod = "expr"                     -- default is "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
 vim.opt.foldenable = false                      -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
-vim.cmd [[
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
-]]
+
+-- Function to save the current view of the file before it is closed, and load
+-- that view when the file is opened. Avoids errors in non-file buffers.
+local function auto_save_view()
+  vim.cmd([[
+    augroup AutoSaveFolds
+      autocmd!
+      autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | silent! mkview | endif
+      autocmd BufWinEnter * if expand('%') != '' && &buftype == '' | silent! loadview | endif
+    augroup END
+  ]])
+end
+
+-- Call the function to setup the autosave view
+auto_save_view()
 
 
 -- general
