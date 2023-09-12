@@ -111,6 +111,10 @@ fi
 alias vim="lvim"
 alias nvim="lvim"
 alias pre-commit-run="curl -s -o '.pre-commit-config.yaml' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.pre-commit-config.yaml --next -o '.prettierignore' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.prettierignore && pre-commit run -a ; rm '.pre-commit-config.yaml' '.prettierignore'"
+# recursively find all files which are not in .git, node_modules, and aws-sam directories
+alias ff='find . -type f -not -path "*/\.git/*" -not -path "*node_modules*" -not -path "*aws-sam*"'
+# recurse through all subdirectories, finding all git repositories and checking out the default branch
+alias gcodb='find ./ -type d -name ".git" -exec sh -c '\''cd "{}" && cd .. && pwd && default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@") && echo $default_branch && git checkout $default_branch'\'' \;'
 
 #autoload -U +X bashcompinit && bashcompinit
 
