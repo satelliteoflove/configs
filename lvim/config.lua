@@ -136,6 +136,9 @@ lvim.plugins = {
     "simnalamburt/vim-mundo",
   },
   {
+    "f-person/git-blame.nvim",
+  },
+  {
     "mfussenegger/nvim-dap-python",
   },
   {
