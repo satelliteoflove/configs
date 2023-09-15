@@ -8,14 +8,14 @@ vim.opt.tabstop = 2
 vim.opt.relativenumber = true
 vim.opt.colorcolumn = "80"
 
-vim.opt.foldmethod = "expr"                     -- default is "manual"
+vim.opt.foldmethod = "expr" -- default is "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
-vim.opt.foldenable = false                      -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
+vim.opt.foldenable = false -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
 
 -- Function to save the current view of the file before it is closed, and load
 -- that view when the file is opened. Avoids errors in non-file buffers.
 local function auto_save_view()
-  vim.cmd([[
+	vim.cmd([[
     augroup AutoSaveFolds
       autocmd!
       autocmd BufWinLeave * if expand('%') != '' && &buftype == '' | silent! mkview | endif
@@ -27,13 +27,12 @@ end
 -- Call the function to setup the autosave view
 auto_save_view()
 
-
 -- general
 lvim.log.level = "info"
 lvim.format_on_save = {
-  enabled = true,
-  pattern = "*.lua",
-  timeout = 1000,
+	enabled = true,
+	pattern = "*.lua",
+	timeout = 1000,
 }
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -67,13 +66,13 @@ lvim.builtin.treesitter.auto_install = true
 
 -- -- always installed on startup, useful for parsers without a strict filetype
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "comment",
-  "hcl",
-  "markdown_inline",
-  "python",
-  "regex",
-  "terraform"
+	"bash",
+	"comment",
+	"hcl",
+	"markdown_inline",
+	"python",
+	"regex",
+	"terraform",
 }
 
 -- -- generic LSP settings <https://www.lunarvim.org/docs/languages#lsp-support>
@@ -104,49 +103,58 @@ lvim.builtin.treesitter.ensure_installed = {
 -- end
 
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "black", extra_args = { "--line-length 79" }, filetypes = { "python" } },
-  { command = "stylua" },
-  {
-    command = "prettier",
-    extra_args = { "--print-width", "100" },
-    filetypes = { "typescript", "typescriptreact" },
-  },
-}
-local linters = require "lvim.lsp.null-ls.linters"
-linters.setup {
-  { command = "flake8", filetypes = { "python" } },
-  {
-    command = "shellcheck",
-    args = { "--severity", "warning" },
-  },
-}
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ command = "black", extra_args = { "--line-length 79" }, filetypes = { "python" } },
+	{ command = "stylua" },
+	{
+		command = "prettier",
+		extra_args = { "--print-width", "100" },
+		filetypes = { "typescript", "typescriptreact" },
+	},
+})
+local linters = require("lvim.lsp.null-ls.linters")
+linters.setup({
+	{ command = "flake8", filetypes = { "python" } },
+	{
+		command = "shellcheck",
+		args = { "--severity", "warning" },
+	},
+})
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 -- Prevent tab from completing Codeium suggestions
 vim.g.codeium_no_map_tab = true
 
 lvim.plugins = {
-  {
-    "folke/trouble.nvim",
-    cmd = "TroubleToggle",
-  },
-  {
-    "simnalamburt/vim-mundo",
-  },
-  {
-    "f-person/git-blame.nvim",
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-  },
-  {
-    "Exafunction/codeium.vim",
-    config = function()
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-    end
-  }
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+	},
+	{
+		"simnalamburt/vim-mundo",
+	},
+	{
+		"f-person/git-blame.nvim",
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+	},
+	{
+		"fatih/vim-go",
+		-- cmd = ":GoUpdateBinaries",
+	},
+	{
+		"Exafunction/codeium.vim",
+		config = function()
+			vim.keymap.set("i", "<C-g>", function()
+				return vim.fn["codeium#Accept"]()
+			end, { expr = true })
+		end,
+	},
+	{
+		"rafi/awesome-vim-colorschemes",
+	},
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
