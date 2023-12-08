@@ -57,7 +57,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Map <F5> to allow inserting current date/time
 lvim.keys.insert_mode["<F5>"] = "<C-R>=strftime('%Y-%m-%d %H:%M:%S')<CR>"
