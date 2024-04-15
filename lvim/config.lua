@@ -12,6 +12,11 @@ vim.opt.foldmethod = "expr" -- default is "manual"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- default is ""
 vim.opt.foldenable = false -- if this option is true and fold method option is other than normal, every time a document is opened everything will be folded.
 
+vim.opt.textwidth = 0 -- ensure no line breaks are automatically set
+vim.opt.wrap = true -- enable line wrapping
+vim.opt.linebreak = true -- break lines at word boundaries
+vim.opt.showbreak = "↪"
+
 -- Function to save the current view of the file before it is closed, and load
 -- that view when the file is opened. Avoids errors in non-file buffers.
 local function auto_save_view()
