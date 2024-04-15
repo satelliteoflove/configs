@@ -49,15 +49,13 @@ end
 
 update_color_scheme() -- Call on startup to set initial color scheme
 
--- Periodically update color scheme
-local vim = vim
-vim.defer_fn(function()
-	vim.api.nvim_create_autocmd("CursorHold", {
-		callback = function()
-			update_color_scheme()
-		end,
-	})
-end, 2000) -- Checks every second, adjust as necessary
+-- Update color scheme whenever a buffer is entered or changed
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "BufRead" }, {
+	callback = function()
+		update_color_scheme()
+	end,
+})
+
 -- general
 lvim.log.level = "info"
 lvim.format_on_save = {
@@ -188,7 +186,16 @@ lvim.plugins = {
 	{
 		"rafi/awesome-vim-colorschemes",
 	},
+	{
+		"rust-lang/rust.vim",
+	},
+	{
+		"simrat39/rust-tools.nvim",
+	},
 }
+
+
+require("rust-tools").setup({})
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
