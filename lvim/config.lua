@@ -32,6 +32,32 @@ end
 -- Call the function to setup the autosave view
 auto_save_view()
 
+-- Update color scheme when MacOS appearance changes
+local function update_color_scheme()
+	local handle = io.popen("~/Documents/the4ofus/repos/configs/lvim/check_appearance.sh")
+	local result = handle:read("*a")
+	handle:close()
+	local scheme = "lunar" -- default to dark scheme
+	if result:match("false") then
+		scheme = "carbonized-light"
+	end
+	if vim.g.colors_name ~= scheme then
+		-- use 'silent!' to suppress output from the command
+		vim.cmd("silent! colorscheme " .. scheme)
+	end
+end
+
+update_color_scheme() -- Call on startup to set initial color scheme
+
+-- Periodically update color scheme
+local vim = vim
+vim.defer_fn(function()
+	vim.api.nvim_create_autocmd("CursorHold", {
+		callback = function()
+			update_color_scheme()
+		end,
+	})
+end, 2000) -- Checks every second, adjust as necessary
 -- general
 lvim.log.level = "info"
 lvim.format_on_save = {
