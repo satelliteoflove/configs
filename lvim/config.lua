@@ -190,12 +190,11 @@ lvim.plugins = {
 		"rust-lang/rust.vim",
 	},
 	{
-		"simrat39/rust-tools.nvim",
+		"mrcjkb/rustaceanvim",
 	},
 }
 
 
-require("rust-tools").setup({})
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
