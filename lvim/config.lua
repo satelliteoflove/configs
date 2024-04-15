@@ -176,7 +176,6 @@ lvim.plugins = {
 	},
 	{
 		"fatih/vim-go",
-		-- cmd = ":GoUpdateBinaries",
 	},
 	{
 		"Exafunction/codeium.vim",
