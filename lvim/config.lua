@@ -194,7 +194,9 @@ lvim.plugins = {
 	},
 }
 
-
+require("gitblame").setup({
+	enabled = false,
+})
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
 -- vim.api.nvim_create_autocmd("FileType", {
