@@ -74,13 +74,9 @@ ZSH_THEME="agnoster"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
-  brew
   colored-man-pages 
   command-not-found
-  git 
-  sprunge 
-  terraform
-  tmux 
+  sprunge #pastebin type tool
   zsh-autosuggestions 
   zsh-syntax-highlighting
 )
