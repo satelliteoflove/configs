@@ -78,7 +78,7 @@ plugins=(
   command-not-found
   sprunge #pastebin type tool
   zsh-autosuggestions 
-  zsh-syntax-highlighting
+  # zsh-syntax-highlighting
 )
 
 # User configuration
