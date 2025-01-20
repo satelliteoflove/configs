@@ -37,7 +37,8 @@ local function update_color_scheme()
 	local handle = io.popen("~/Documents/the4ofus/repos/configs/lvim/check_appearance.sh")
 	local result = handle:read("*a")
 	handle:close()
-	local scheme = "lunar" -- default to dark scheme
+	-- local scheme = "lunar" -- default to dark scheme
+	local scheme = "jellybeans" -- default to dark scheme
 	if result:match("false") then
 		scheme = "carbonized-light"
 	end
