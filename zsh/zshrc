@@ -106,8 +106,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="lvim"
-alias nvim="lvim"
+alias vim="nvim" # changed for switch to AstroNvim
 alias pre-commit-run="curl -s -o '.pre-commit-config.yaml' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.pre-commit-config.yaml --next -o '.prettierignore' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.prettierignore && pre-commit run -a ; rm '.pre-commit-config.yaml' '.prettierignore'"
 # recursively find all files which are not in .git, node_modules, and aws-sam directories
 alias ff='find . -type f -not -path "*/\.git/*" -not -path "*node_modules*" -not -path "*aws-sam*"'
@@ -117,7 +116,7 @@ alias gcodb='find ./ -type d -name ".git" -exec sh -c '\''cd "{}" && cd .. && pw
 #autoload -U +X bashcompinit && bashcompinit
 
 # default editor
-export EDITOR='lvim'
+export EDITOR='nvim'
 
 # tabtab source for packages
 # uninstall by removing these lines
