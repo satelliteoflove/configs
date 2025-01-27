@@ -76,6 +76,7 @@ plugins=(
   aws
   colored-man-pages 
   command-not-found
+  isodate
   sprunge #pastebin type tool
   zsh-autosuggestions 
   # zsh-syntax-highlighting
