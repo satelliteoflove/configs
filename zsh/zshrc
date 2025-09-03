@@ -1,9 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 
-# Set GOPATH
-#export GOPATH=$(go env GOPATH)
-
 # tmux plugin configs
 ZSH_TMUX_AUTOSTART=false
 # must be set as xterm so tmux doesn't shit itself
@@ -95,6 +92,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+alias vim="nvim" # changed for switch to AstroNvim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -107,17 +105,11 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vim="nvim" # changed for switch to AstroNvim
 alias pre-commit-run="curl -s -o '.pre-commit-config.yaml' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.pre-commit-config.yaml --next -o '.prettierignore' https://raw.githubusercontent.com/StratusGrid/workflow-config/main/precommit-config/.prettierignore && pre-commit run -a ; rm '.pre-commit-config.yaml' '.prettierignore'"
 # recursively find all files which are not in .git, node_modules, and aws-sam directories
 alias ff='find . -type f -not -path "*/\.git/*" -not -path "*node_modules*" -not -path "*aws-sam*"'
 # recurse through all subdirectories, finding all git repositories and checking out the default branch
 alias gcodb='find ./ -type d -name ".git" -exec sh -c '\''cd "{}" && cd .. && pwd && default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed "s@^refs/remotes/origin/@@") && echo $default_branch && git checkout $default_branch'\'' \;'
-
-#autoload -U +X bashcompinit && bashcompinit
-
-# default editor
-export EDITOR='nvim'
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -157,9 +149,14 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
+# Lazy load NVM for better shell startup performance
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
 # Task Master aliases added on 4/14/2025
 alias tm='task-master'
