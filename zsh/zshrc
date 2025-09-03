@@ -141,7 +141,11 @@ _awsume() {
     return 0
 }
 
+# Completion for AWSume
 complete -F _awsume awsume
+
+# Configure direnv hooks
+eval "$(direnv hook zsh)"
 
 # Hide user@hostname
 prompt_context () { }
@@ -154,5 +158,12 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Task Master aliases added on 4/14/2025
+alias tm='task-master'
+alias taskmaster='task-master'
+
+# Added by Windsurf
+export PATH="/Users/chris.childress/.codeium/windsurf/bin:$PATH"
