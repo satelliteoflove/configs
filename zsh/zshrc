@@ -86,6 +86,9 @@ plugins=(
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
+# Claude Code extended thinking mode (Sonnet 4.5)
+export MAX_THINKING_TOKENS=10000
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
