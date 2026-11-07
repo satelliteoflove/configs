@@ -153,10 +153,6 @@ export NVM_DIR="$HOME/.nvm"
 if [[ $OSTYPE == darwin* ]]; then
   complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-  if [ -x /opt/homebrew/bin/cowthink -a -x /opt/homebrew/bin/fortune ]; then
-    fortune | cowthink
-  fi
-
   test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
   # Added by Windsurf
@@ -180,6 +176,10 @@ else
     emulate sh -c 'source "$HOME/.profile"'
   fi
 
+  # Debian installs fortune and cowsay here. bash gets it from /etc/profile,
+  # which zsh doesn't read.
+  path+=(/usr/games)
+
   # npm needs a "global" path I have rights to:
   export PATH=~/.npm-global/bin:$PATH
 
@@ -193,3 +193,12 @@ else
   export BUN_INSTALL="$HOME/.bun"
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
+
+# A fortune from a thinking cow at startup, wherever Homebrew or apt put them.
+for _bin in /opt/homebrew/bin /usr/games; do
+  if [ -x $_bin/cowthink -a -x $_bin/fortune ]; then
+    $_bin/fortune | $_bin/cowthink
+    break
+  fi
+done
+unset _bin
