@@ -87,7 +87,7 @@ plugins=(
 export LANG=en_US.UTF-8
 
 # Claude Code extended thinking mode (Sonnet 4.5)
-export MAX_THINKING_TOKENS=10000
+# export MAX_THINKING_TOKENS=10000
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -151,15 +151,23 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export CLAUDE_CODE_NO_FLICKER=1
 
 # NVM (Node Version Manager) configuration
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Task Master aliases added on 4/14/2025
-alias tm='task-master'
-alias taskmaster='task-master'
-
 # Added by Windsurf
 export PATH="/Users/chris.childress/.codeium/windsurf/bin:$PATH"
+
+# Set DotNET root to avoid needing to prefix commands with it
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
+# pnpm
+export PNPM_HOME="/Users/chris.childress/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+# pnpm end
